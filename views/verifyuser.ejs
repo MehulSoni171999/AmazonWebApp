@@ -1,0 +1,24 @@
+<% include ./partials/header.ejs %>
+    <div class="container">
+        <h1 class="text-center pt-2">VERIFY USER</h1>
+        <form action="/verify" method="post">
+            <div class="form-group">
+              <label>ENTER NAME</label>
+              <input type="text" class="form-control" value="<%= userdata.name%>"  placeholder="Enter name">
+            </div>
+            <div class="form-group mt-3">
+                <label >ENTER THE Contact Number</label>
+                <input type="text" class="form-control" value="<%=userdata.contactnumber%>"  placeholder="Enter the Contact Number">
+            </div>
+            <div class="form-group mt-3">
+              <label >ENTER THE GSTIN</label>
+              <input type="text" name="gstin" class="form-control"  placeholder="Enter the GSTIN">
+            </div>
+            <div class="form-group mt-3">
+                <label>ENTER THE ADDRESS</label>
+                <input type="text" name="address" class="form-control" placeholder="Enter the Address">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+          </form>
+    </div>
+<% include ./partials/footer.ejs %>

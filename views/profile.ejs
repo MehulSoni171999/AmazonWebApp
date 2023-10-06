@@ -1,0 +1,188 @@
+<% include ./partials/header.ejs %>
+     <!--------------------MODEL CODE-------------------------------------------------------------------------------------------------------------------->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!--------------------------------------------------------------------------------------------------->
+            <form
+              action="/create/product"
+              method="post"
+              enctype="multipart/form-data"
+            >
+              <div class="form-group">
+                <label>Product Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="name"
+                  placeholder="Enter Product Name"
+                />
+              </div>
+              <div class="form-group">
+                <label>Description of the Product</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="desc"
+                  placeholder="Enter Product Description"
+                />
+              </div>
+              <div class="form-group">
+                <label>Enter the price</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="price"
+                  placeholder="Enter the Price"
+                />
+              </div>
+              <!-------------------------------------------------------------------------------------------->
+              <div class="mb-3">
+                <label for="formFile" class="form-label"
+                  >Enter the product picture 1</label
+                >
+                <input
+                  class="form-control"
+                  name="images"
+                  type="file"
+                  id="formFile"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label"
+                  >Enter the product picture 2</label
+                >
+                <input
+                  class="form-control"
+                  name="images"
+                  type="file"
+                  id="formFile"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label"
+                  >Enter the product picture 3</label
+                >
+                <input
+                  class="form-control"
+                  name="images"
+                  type="file"
+                  id="formFile"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Create Product
+              </button>
+            </form>
+            <!------------------------------------------------------------------------------------------------------->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <!-- <button type="button" class="btn btn-primary">Create Product</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!---------------------------------------------------------------------------------------------------------------------------------------->
+    <div class="container">
+      <h1>Profile page</h1>
+      <hr />
+      <% if(verified){%>
+         <h3 class="text-success">YOUR PROFILE IS VERIFIED</h3>
+      <%} else {%>
+        <div class="card">
+          <div
+            class="card-body d-flex justify-content-between"
+            style="background-color: #ba070f; border-radius: 10px; color: #fff"
+          >
+            <h4>
+              your profile is incomplete
+              <a href="/verify" style="color: black; text-decoration: none"
+                >verify your account</a
+              >
+              to get access
+            </h4>
+            <a
+              href="/verify"
+              class="btn"
+              style="color: #fff; background-color: #ff132a"
+              >verify now</a
+            >
+          </div>
+        </div>
+      <%}%>  
+      <hr />
+      <div class="card">
+        <div class="card-body d-flex" style="gap: 20px">
+          <div class="profile-photo">
+            <img
+              src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+              alt=""
+            />
+          </div>
+          <div class="profile-details">
+            <h2><%= userdata.name %></h2>
+            <h6><%= userdata.username %></h6>
+            <a href="">edit your profile</a>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="card">
+        <div class="card-body d-flex" style="gap: 20px">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            + Create new product
+          </button>
+          <!-- <button class="btn btn-warning">! Update old product</button>
+          <button href="/product" class="btn btn-info">show All Product</button> -->
+          <a href="" class="btn btn-warning"> ! Updated Old Product</a>
+          <a href="/product" class="btn btn-info">Show All Product</a>
+        </div>
+      </div>
+      <hr />
+      <h3>RECENT CREATED PRODUCT</h3>
+      <div class="d-flex" style="gap: 10px">
+      <% userdata.products.forEach(function(pr){%>
+        <div class="card" style="width: 18rem">
+          <img class="card-img-top"  src="../images/productimages/<%= pr.pic[0]%>" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"><%= pr.name%></h5>
+            <h6 class="card-text"><%= pr.price%></h6>
+            <p class="card-text"><%= pr.desc%></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      <%})%>   
+      </div>
+    </div>
+ <% include ./partials/footer.ejs %>

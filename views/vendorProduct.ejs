@@ -1,0 +1,27 @@
+<% include ./partials/header.ejs %>
+    <!---------------------------------------------------------------------------------------------------------------------------------------->
+     <div class="container">
+          <h1 class="text-center marthead" >All PRODUCTS CREATED BY VENDOR</h1>
+          <hr>
+         <div class="row">
+            <% allProducts.forEach(function(pr){%>
+                <div class="col-md-3">
+                    <div class="product-image"><img src="../images/productimages/<%=pr.pic[0]%>"alt="product-image"></div>
+                    <h6 class="mt-4">Price:- <%=pr.price%></h6>
+                    <h6>Product Name:-<%= pr.name%></h6>
+                    <h6 >description:-<%=pr.desc%></h6>
+                    <% if(loginuser.products.indexOf(pr.id) !== -1){%>
+                       <div class="button-section">
+                       <a href="" class="btn btn-warning">Edit</a>
+                       <a href="" class="btn btn-danger">Delete</a>
+                    </div>
+                    <%} else {%>
+                        <div class="button-section">
+                            <a href="" class="btn btn-primary">Buy</a>
+                        </div>
+                    <%}%>   
+                </div>
+           <%})%> 
+         </div>
+     </div>
+<% include ./partials/footer.ejs %>

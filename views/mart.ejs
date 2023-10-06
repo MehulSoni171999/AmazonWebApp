@@ -1,0 +1,23 @@
+<% include ./partials/header.ejs %>
+    <!---------------------------------------------------------------------------------------------------------------------------------------->
+     <div class="container">
+          <h1 class="text-center marthead" >MART PAGE</h1>
+          <hr>
+         <div class="row">
+            <% allProducts.forEach(function(pr){%>
+                <div class="col-md-3">
+                   
+                    <div class="product-image"><img src="../images/productimages/<%=pr.pic[0]%>"alt="product-image"></div>
+                    <h4 class="mt-4">Price:- <%=pr.price%></h4>
+                    <h5 >Sold by:-<%= pr.sellerid.name%></h5>
+                    <h6 >description:-<%=pr.desc%></h6> 
+                    <div class="button-section">
+                       <a href="" class="btn btn-warning">wishlist</a>
+                       <a href="" class="btn btn-primary">Add to Cart</a>
+                       <a href="/wishlist/product/:id" class="btn btn-danger" id="wishlist-button"><i class="ri-heart-add-line"></i></a>
+                    </div>
+                </div>
+           <%})%> 
+         </div>
+     </div>
+<% include ./partials/footer.ejs %>
